@@ -50,13 +50,22 @@ const authSlice = createSlice({
     error: "",
     loading: false,
   },
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    setLogout: (state, action) => {
+      localStorage.clear();
+      state.user = null;
+    },
+  },
   extraReducers: {
     [login.pending]: (state, action) => {
       state.loading = true;
     },
     [login.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.setItem("profile ", JSON.stringify({ ...action.payload }));
+      localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
       state.user = action.payload;
     },
     [login.rejected]: (state, action) => {
@@ -68,7 +77,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.setItem("profile ", JSON.stringify({ ...action.payload }));
+      localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
       state.user = action.payload;
     },
     [register.rejected]: (state, action) => {
@@ -80,7 +89,7 @@ const authSlice = createSlice({
     },
     [googleSignIn.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.setItem("profile ", JSON.stringify({ ...action.payload }));
+      localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
       state.user = action.payload;
     },
     [googleSignIn.rejected]: (state, action) => {
@@ -89,5 +98,7 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const { setUser, setLogout } = authSlice.actions;
 
 export default authSlice.reducer;
