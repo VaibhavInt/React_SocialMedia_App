@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { login } from "../redux/features/authSlice";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 
 const initialState = {
   email: "",
@@ -43,12 +43,13 @@ const Login = () => {
     setFormValue({ ...formValue, [name]: value });
   };
 
-  const googleSuccess = (resp) => {
-    // console.log("rr", resp);
-  };
-  const googleFailure = (error) => {
-    toast.error(error);
-  };
+  // const googleSuccess = (resp) => {
+  //   console.log("rr", resp);
+  // };
+  // const googleFailure = (resp) => {
+  //   // toast.error(error);
+  //   console.log("rr", resp);
+  // };
 
   return (
     <div
@@ -104,8 +105,8 @@ const Login = () => {
             </div>
           </MDBValidation>
           <br />
-          <GoogleLogin
-            clientId="257957776796-nn8fe41hudpluvmkbsfv8kbueqenrb3e.apps.googleusercontent.com "
+          {/* <GoogleLogin
+            clientId="257957776796-nn8fe41hudpluvmkbsfv8kbueqenrb3e.apps.googleusercontent.com"
             render={(renderProps) => (
               <MDBBtn
                 style={{ width: "100%" }}
@@ -119,8 +120,9 @@ const Login = () => {
             )}
             onSuccess={googleSuccess}
             onFailure={googleFailure}
-            cookiePolicy="single_host_origin"
-          />
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+          /> */}
         </MDBCardBody>
         <MDBCardFooter>
           <Link to="/register">
