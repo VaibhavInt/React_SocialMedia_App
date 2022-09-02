@@ -12,7 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { login } from "../redux/features/authSlice";
+import { googleSignIn, login } from "../redux/features/authSlice";
 // import { GoogleLogin } from "react-google-login";
 
 const initialState = {
@@ -45,6 +45,12 @@ const Login = () => {
 
   // const googleSuccess = (resp) => {
   //   console.log("rr", resp);
+  //   const email = resp?.profileObj?.email;
+  //   const name = resp?.profileObj?.name;
+  //   const token = resp?.profileObj?.token;
+  //   const googleId = resp?.profileObj?.googleId;
+  //   const result = { email, name, token, googleId };
+  //   dispatch(googleSignIn({ result, navigate, toast }));
   // };
   // const googleFailure = (resp) => {
   //   // toast.error(error);
