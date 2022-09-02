@@ -1,6 +1,6 @@
 import TourModal from "../models/Tour.js";
 
-export const createTour = async (res, req) => {
+export const createTour = async (req, res) => {
   const tour = req.body;
   const newTour = new TourModal({
     ...tour,

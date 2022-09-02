@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBBtn, MDBCard, MDBCardBody, MDBValidation } from "mdb-react-ui-kit";
 import ChipInput from "material-ui-chip-input";
 import FileBase from "react-file-base64";
-import {} from "react-router-dom";
-import {} from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import { createTour } from "../redux/features/tourSlice";
 
 const initialState = {
   title: "",
@@ -13,11 +14,24 @@ const initialState = {
 };
 const AddEditTour = () => {
   const [tourData, setTourData] = useState(initialState);
+  const { error, loading } = useSelector((state) => ({ ...state.tour }));
+  const { user } = useSelector((state) => ({ ...state.auth }));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { title, description, tags } = tourData;
 
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (title && description && tags) {
+      const updatedTourData = { ...tourData, name: user?.result?.name };
+      dispatch(createTour({ updatedTourData, navigate, toast }));
+      handleClear();
+    }
   };
 
   const onInputChange = (e) => {

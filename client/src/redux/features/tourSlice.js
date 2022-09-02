@@ -3,9 +3,9 @@ import * as api from "../api";
 
 export const createTour = createAsyncThunk(
   "tour/createTour",
-  async ({ tourData, navigate, toast }, { rejectWithValue }) => {
+  async ({ updatedTourData, navigate, toast }, { rejectWithValue }) => {
     try {
-      const response = await api.createTour(tourData);
+      const response = await api.createTour(updatedTourData);
       toast.success("Tour Added Successfully.");
       navigate("/");
       return response.data;
