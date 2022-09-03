@@ -9,7 +9,7 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
-const CardTour = ({ imageFile, description, title, tag, _id, name }) => {
+const CardTour = ({ imageFile, description, title, tags, _id, name }) => {
   console.log("tr", _id);
   const excerpt = (str) => {
     if (str.length > 45) {
@@ -29,7 +29,7 @@ const CardTour = ({ imageFile, description, title, tag, _id, name }) => {
         />
         <div className="top-left">{name}</div>
         <span className="text-start tag-card">
-          {tag.map((item) => `#${item}`)}
+          {tags.map((item) => `#${item}`)}
         </span>
         <MDBCardBody>
           <MDBCardTitle className="text-start">{title}</MDBCardTitle>

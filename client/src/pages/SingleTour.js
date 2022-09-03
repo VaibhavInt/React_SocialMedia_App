@@ -16,7 +16,7 @@ const SingleTour = () => {
   const dispatch = useDispatch();
   const { tour } = useSelector((state) => ({ ...state.tour }));
   const { id } = useParams();
-  console.log("tour", tour);
+  // console.log("tour", tour.tags);
 
   useEffect(() => {
     if (id) {
@@ -41,7 +41,7 @@ const SingleTour = () => {
             </span>
             <div style={{ float: "left" }}>
               <span className="text-start">
-                {tour && tour.tag && tour.tag.map((item) => `#${item}`)}
+                {tour && tour.tags && tour.tags.map((item) => `#${item} `)}
               </span>
             </div>
             <br />
