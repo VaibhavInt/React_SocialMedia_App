@@ -10,7 +10,6 @@ import {
 import { Link } from "react-router-dom";
 
 const CardTour = ({ imageFile, description, title, tags, _id, name }) => {
-  console.log("tr", _id);
   const excerpt = (str) => {
     if (str.length > 45) {
       str = str.substring(0, 45) + " ...";
