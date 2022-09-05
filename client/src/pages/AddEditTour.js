@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { MDBBtn, MDBCard, MDBCardBody, MDBValidation } from "mdb-react-ui-kit";
+import {
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBTextArea,
+  MDBValidation,
+} from "mdb-react-ui-kit";
 import ChipInput from "material-ui-chip-input";
 import FileBase from "react-file-base64";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,6 +21,7 @@ const initialState = {
 };
 const AddEditTour = () => {
   const [tourData, setTourData] = useState(initialState);
+  const [tagErrMsg, setTagErrMsg] = useState(null);
   const { error, loading, userTours } = useSelector((state) => ({
     ...state.tour,
   }));
@@ -38,6 +46,9 @@ const AddEditTour = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!tags.length) {
+      setTagErrMsg("Please provide some tags.");
+    }
     if (title && description && tags) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
 
@@ -56,6 +67,7 @@ const AddEditTour = () => {
   };
 
   const handleAddTag = (tag) => {
+    setTagErrMsg(null);
     setTourData({ ...tourData, tags: [...tourData.tags, tag] });
   };
 
@@ -85,8 +97,8 @@ const AddEditTour = () => {
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} className="row g-3" noValidate>
             <div className="col-md-12">
-              <input
-                placeholder="Title"
+              <MDBInput
+                label="Title"
                 type="text"
                 value={title}
                 name="title"
@@ -98,16 +110,16 @@ const AddEditTour = () => {
               />
             </div>
             <div className="col-md-12">
-              <textarea
-                placeholder="Enter Description"
+              <MDBTextArea
+                label="Enter Description"
                 type="text"
-                style={{ height: "100px" }}
                 value={description}
                 name="description"
                 onChange={onInputChange}
                 className="form-control"
                 required
                 invalid
+                rows={4}
                 validation="Please provide description"
               />
             </div>
@@ -121,6 +133,7 @@ const AddEditTour = () => {
                 onAdd={(tag) => handleAddTag(tag)}
                 onDelete={(tag) => handleDeleteTag(tag)}
               />
+              {tagErrMsg && <div className="tagErrMsg">{tagErrMsg}</div>}
             </div>
             <div className="d-flex justify-content-start">
               <FileBase
