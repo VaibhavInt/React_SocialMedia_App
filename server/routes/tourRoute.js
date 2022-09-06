@@ -6,13 +6,16 @@ import {
   getTour,
   getTourByUser,
   getTours,
+  getToursBySearch,
   updateTour,
 } from "../controllers/tourControllers.js";
 const tourRouter = express.Router();
 
-tourRouter.post("/", auth, createTour);
+tourRouter.get("/search", getToursBySearch);
 tourRouter.get("/", getTours);
 tourRouter.get("/:id", getTour);
+
+tourRouter.post("/", auth, createTour);
 tourRouter.delete("/:id", auth, deleteTour);
 tourRouter.patch("/:id", auth, updateTour);
 tourRouter.get("/userTours/:id", auth, getTourByUser);

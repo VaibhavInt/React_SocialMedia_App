@@ -90,3 +90,15 @@ export const updateTour = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getToursBySearch = async (req, res) => {
+  const { searchQuery } = req.query;
+  try {
+    const title = new RegExp(searchQuery, "i");
+    const tours = await TourModal.find({ title });
+    res.json(tours);
+  } catch (error) {
+    res.status(404).json({ message: "Something went wrong" });
+    console.log(error);
+  }
+};
