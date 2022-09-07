@@ -7,11 +7,13 @@ import {
   getTourByUser,
   getTours,
   getToursBySearch,
+  getToursByTag,
   updateTour,
 } from "../controllers/tourControllers.js";
 const tourRouter = express.Router();
 
 tourRouter.get("/search", getToursBySearch);
+tourRouter.get("/tag/:tag", getToursByTag);
 tourRouter.get("/", getTours);
 tourRouter.get("/:id", getTour);
 

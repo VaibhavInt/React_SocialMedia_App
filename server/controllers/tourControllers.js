@@ -102,3 +102,14 @@ export const getToursBySearch = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getToursByTag = async (req, res) => {
+  const { tag } = req.params;
+  try {
+    const tours = await TourModal.find({ tags: { $in: tag } });
+    res.json(tours);
+  } catch (error) {
+    res.status(404).json({ message: "Something went wrong" });
+    console.log(error);
+  }
+};
