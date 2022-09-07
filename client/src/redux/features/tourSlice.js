@@ -15,11 +15,23 @@ export const createTour = createAsyncThunk(
   }
 );
 
+// export const getTours = createAsyncThunk(
+//   "tour/getTours",
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await api.getTours();
+//       return response.data;
+//     } catch (err) {
+//       return rejectWithValue(err.response.data);
+//     }
+//   }
+// );
+
 export const getTours = createAsyncThunk(
   "tour/getTours",
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
     try {
-      const response = await api.getTours();
+      const response = await api.getTours(page);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -121,10 +133,16 @@ const tourSlice = createSlice({
     userTours: [],
     tagTours: [],
     relatedTours: [],
+    currentPage: 1,
+    numberOfPages: null,
     error: "",
     loading: false,
   },
-
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: {
     [createTour.pending]: (state, action) => {
       state.loading = true;
@@ -142,7 +160,9 @@ const tourSlice = createSlice({
     },
     [getTours.fulfilled]: (state, action) => {
       state.loading = false;
-      state.tours = action.payload;
+      state.tours = action.payload.data;
+      state.numberOfPages = action.payload.numberOfPages;
+      state.currentPage = action.payload.currentPage;
     },
     [getTours.rejected]: (state, action) => {
       state.loading = false;
@@ -245,5 +265,7 @@ const tourSlice = createSlice({
     },
   },
 });
+
+export const { setCurrentPage } = tourSlice.actions;
 
 export default tourSlice.reducer;
