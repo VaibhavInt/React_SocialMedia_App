@@ -31,8 +31,8 @@ const SingleTour = () => {
 
   return (
     <>
-      <MDBContainer>
-        <MDBCard className="mb-3 mt-2">
+      <MDBContainer style={{ marginTop: "120px" }}>
+        <MDBCard className="mb-3 mt-5">
           <MDBCardImage
             position="top"
             style={{ width: "100%", maxHeight: "600px" }}
