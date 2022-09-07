@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { deleteTour, getToursByUser } from "../redux/features/tourSlice";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
+import { excerpt } from "../utility";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => ({ ...state.auth }));
@@ -28,13 +29,6 @@ const Dashboard = () => {
       dispatch(getToursByUser(userId));
     }
   }, [userId]);
-
-  const excerpt = (str) => {
-    if (str.length > 40) {
-      str = str.substring(0, 40) + " ...";
-    }
-    return str;
-  };
 
   if (loading) {
     return <Spinner />;
@@ -77,7 +71,7 @@ const Dashboard = () => {
                     </MDBCardTitle>
                     <MDBCardText className="text-start">
                       <small className="text-muted">
-                        {excerpt(item.description)}
+                        {excerpt(item.description, 40)}
                       </small>
                     </MDBCardText>
                     <div

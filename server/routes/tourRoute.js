@@ -3,6 +3,7 @@ import auth from "../middleware/auth.js";
 import {
   createTour,
   deleteTour,
+  getRelatedTours,
   getTour,
   getTourByUser,
   getTours,
@@ -14,6 +15,7 @@ const tourRouter = express.Router();
 
 tourRouter.get("/search", getToursBySearch);
 tourRouter.get("/tag/:tag", getToursByTag);
+tourRouter.post("/relatedTours", getRelatedTours);
 tourRouter.get("/", getTours);
 tourRouter.get("/:id", getTour);
 
