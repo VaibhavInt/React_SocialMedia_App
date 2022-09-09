@@ -9,6 +9,7 @@ import {
   getTours,
   getToursBySearch,
   getToursByTag,
+  likeTour,
   updateTour,
 } from "../controllers/tourControllers.js";
 const tourRouter = express.Router();
@@ -23,5 +24,6 @@ tourRouter.post("/", auth, createTour);
 tourRouter.delete("/:id", auth, deleteTour);
 tourRouter.patch("/:id", auth, updateTour);
 tourRouter.get("/userTours/:id", auth, getTourByUser);
+tourRouter.patch("/like/:id", auth, likeTour);
 
 export default tourRouter;
