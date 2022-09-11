@@ -36,7 +36,7 @@ const CardTour = ({
           {likes.length > 2 ? (
             <MDBTooltip
               tag="a"
-              title={`You and ${likes.length - 1} other likes`}
+              title={`You and ${likes.length - 1} other people likes`}
             >
               {likes.length} Likes
             </MDBTooltip>
