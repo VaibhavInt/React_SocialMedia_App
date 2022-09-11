@@ -6,6 +6,7 @@ import {
   MDBInput,
   MDBTextArea,
   MDBValidation,
+  MDBValidationItem,
 } from "mdb-react-ui-kit";
 import ChipInput from "material-ui-chip-input";
 import FileBase from "react-file-base64";
@@ -95,34 +96,38 @@ const AddEditTour = () => {
       <MDBCard alignment="center">
         <h5>{id ? "Update Tour " : "Add Tour"}</h5>
         <MDBCardBody>
-          <MDBValidation onSubmit={handleSubmit} className="row g-3" noValidate>
-            <div className="col-md-12">
+          <MDBValidation onSubmit={handleSubmit} className="row g-3">
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your title"
+              invalid
+            >
               <MDBInput
                 label="Title"
                 type="text"
-                value={title}
                 name="title"
+                value={title}
                 onChange={onInputChange}
-                className="form-control"
+                id="validationCustom01"
                 required
-                invalid
-                validation="Please provide title"
               />
-            </div>
-            <div className="col-md-12">
+            </MDBValidationItem>
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your description"
+              invalid
+            >
               <MDBTextArea
                 label="Enter Description"
                 type="text"
-                value={description}
                 name="description"
+                value={description}
                 onChange={onInputChange}
-                className="form-control"
+                id="validationCustom02"
                 required
-                invalid
                 rows={4}
-                validation="Please provide description"
               />
-            </div>
+            </MDBValidationItem>
             <div className="col-md-12">
               <ChipInput
                 name="tags"

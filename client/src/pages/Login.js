@@ -8,6 +8,7 @@ import {
   MDBBtn,
   MDBIcon,
   MDBSpinner,
+  MDBValidationItem,
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,31 +72,37 @@ const Login = () => {
         <MDBIcon fas icon="user-circle" className="fa-3x" />
         <h3>Sign In</h3>
         <MDBCardBody>
-          <MDBValidation onSubmit={handleSubmit} noValidate className="row g-3">
-            <div className="col-md-12">
+          <MDBValidation onSubmit={handleSubmit} className="row g-3">
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your email."
+              invalid
+            >
               <MDBInput
                 label="Email"
                 type="email"
-                value={email}
                 name="email"
+                value={email}
                 onChange={onInputChange}
+                id="validationCustom01"
                 required
-                invalid
-                validation="Please provide your email"
               />
-            </div>
-            <div className="col-md-12">
+            </MDBValidationItem>
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your password."
+              invalid
+            >
               <MDBInput
                 label="Password"
                 type="password"
-                value={password}
                 name="password"
+                value={password}
                 onChange={onInputChange}
+                id="validationCustom02"
                 required
-                invalid
-                validation="Please provide your password"
               />
-            </div>
+            </MDBValidationItem>
             <div className="col-12">
               <MDBBtn style={{ width: "100%" }} className="mt-2">
                 {loading && (

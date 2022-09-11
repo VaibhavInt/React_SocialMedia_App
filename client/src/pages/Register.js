@@ -8,6 +8,7 @@ import {
   MDBBtn,
   MDBIcon,
   MDBSpinner,
+  MDBValidationItem,
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,67 +62,83 @@ const Register = () => {
         <MDBIcon fas icon="user-circle" className="fa-3x" />
         <h4>Sign Up</h4>
         <MDBCardBody>
-          <MDBValidation onSubmit={handleSubmit} noValidate className="row g-3">
-            <div className="col-md-6">
+          <MDBValidation onSubmit={handleSubmit} className="row g-3">
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your first name"
+              invalid
+            >
               <MDBInput
                 label="First Name"
                 type="text"
-                value={firstName}
                 name="firstName"
+                value={firstName}
                 onChange={onInputChange}
+                id="validationCustom01"
                 required
-                invalid
-                validation="Please provide your first name "
               />
-            </div>
-            <div className="col-md-6">
+            </MDBValidationItem>
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your last name"
+              invalid
+            >
               <MDBInput
                 label="Last Name"
                 type="text"
-                value={lastName}
                 name="lastName"
+                value={lastName}
                 onChange={onInputChange}
+                id="validationCustom02"
                 required
-                invalid
-                validation="Please provide your last name "
               />
-            </div>
-            <div className="col-md-12">
+            </MDBValidationItem>
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your email"
+              invalid
+            >
               <MDBInput
                 label="Email"
                 type="email"
-                value={email}
                 name="email"
+                value={email}
                 onChange={onInputChange}
+                id="validationCustom03"
                 required
-                invalid
-                validation="Please provide your email"
               />
-            </div>
-            <div className="col-md-12">
+            </MDBValidationItem>
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your password"
+              invalid
+            >
               <MDBInput
                 label="Password"
                 type="password"
-                value={password}
                 name="password"
+                value={password}
                 onChange={onInputChange}
+                id="validationCustom04"
                 required
-                invalid
-                validation="Please provide your password"
               />
-            </div>
-            <div className="col-md-12">
+            </MDBValidationItem>
+            <MDBValidationItem
+              className="col-md-12"
+              feedback="Please provide your  confirm password"
+              invalid
+            >
               <MDBInput
                 label="Confirm Password"
                 type="password"
-                value={confirmPassword}
                 name="confirmPassword"
+                value={confirmPassword}
                 onChange={onInputChange}
+                id="validationCustom04"
                 required
-                invalid
-                validation="Please provide your confirm password"
               />
-            </div>
+            </MDBValidationItem>
+
             <div className="col-12">
               <MDBBtn style={{ width: "100%" }} className="mt-2">
                 {loading && (

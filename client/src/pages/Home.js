@@ -24,6 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getTours(currentPage));
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   if (loading) {
@@ -56,7 +57,7 @@ const Home = () => {
           <MDBContainer>
             <MDBRow className="row-cols-1 row-cols-md-3 g-2 mt-4">
               {tours &&
-                tours.map((item, index) => <CardTour key={index} {...item} />)}
+                tours.map((item) => <CardTour key={item._id} {...item} />)}
             </MDBRow>
           </MDBContainer>
         </MDBCol>

@@ -24,12 +24,14 @@ const SingleTour = () => {
 
   useEffect(() => {
     tags && dispatch(getRelatedTours(tags));
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
 
   useEffect(() => {
     if (id) {
       dispatch(getTour(id));
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
